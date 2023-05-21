@@ -7,7 +7,7 @@ import { Toaster } from "@/components/Toaster";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <WalletContextProvider>
-      <ClerkProvider>
+      <ClerkProvider domain={"olympihacks-project.vercel.app"}>
         <Component {...pageProps} />
         <Toaster />
       </ClerkProvider>
