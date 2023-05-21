@@ -37,6 +37,18 @@ export default function Header() {
 
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:items-center space-x-4">
           <a
+            href="/dashboard/responses"
+            className=" block rounded-lg px-3 py-1 font-semibold leading-7 text-gray-500 hover:bg-gray-50"
+          >
+            Responses
+          </a>
+          <a
+            href="/dashboard/reward"
+            className=" block rounded-lg px-3 py-1 font-semibold leading-7 text-gray-500 hover:bg-gray-50"
+          >
+            Reward
+          </a>
+          <a
             href="/dashboard"
             className=" block rounded-lg px-3 py-1 font-semibold leading-7 text-gray-500 hover:bg-gray-50"
           >

@@ -52,7 +52,7 @@ const FormCard = ({ form, setForms }: Props) => {
           <button
             onClick={() => {
               navigator.clipboard.writeText(
-                `http:/localhost:3000/forms/${form.form_id}`
+                `http:/olympihacks-project.vercel.app/forms/${form.form_id}`
               );
 
               toast({

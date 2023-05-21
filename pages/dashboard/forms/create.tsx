@@ -12,10 +12,6 @@ const Create = () => {
   const { user } = useUser();
 
   const handleCreateNewForm = async () => {
-    if (formName === "" || formDescription === "") {
-      return;
-    }
-
     const formId = uuidv4();
 
     await createNewForm({
@@ -23,7 +19,9 @@ const Create = () => {
       description: formDescription,
       owner_id: user!.id,
       form_id: formId,
-    }).then((res) => console.log(res));
+    })
+      .then((res) => console.log(res))
+      .catch((err) => console.error(err));
 
     router.push(`/dashboard/forms/${formId}`);
   };

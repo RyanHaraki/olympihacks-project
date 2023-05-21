@@ -70,15 +70,32 @@ const deleteQuestionById = async (qid: string) => {
     await deleteDoc(doc(db, "questions", qid));
 }
 
-const createNewResponse = async (payload: any) => {   
-    await setDoc(doc(db, "responses", payload.id), {
-        form_id: payload.form_id,
-        id: uuidv4(),
+const createNewResponse = async (payload: any) => { 
+
+    const id = uuidv4();
+
+    await setDoc(doc(db, "responses", id), {
+        owner_id: payload.ownerId,
+        form_id: payload.formId,
+        id: id,
         answers: payload.answers,
-        wallet: payload.wallet
+        publicKey: payload.publicKey
     });
 }
 
+const getResponseFromPublicKey = async (publicKey: string) => {
+    const q = query(collection(db, "responses"), where("publicKey", "==", publicKey));
+    const querySnapshot = await getDocs(q);
+    const data = querySnapshot.docs.map((doc) => doc.data());
+    return data;
+}
+
+const getResponsesFromUserId = async (uid: string) => {
+    const q = query(collection(db, "responses"), where("owner_id", "==", uid));
+    const querySnapshot = await getDocs(q);
+    const data = querySnapshot.docs.map((doc) => doc.data());
+    return data;
+}
 
 
-export { createNewForm, updateForm, getFormsForUserId, getFormById, deleteFormById, deleteQuestionById, createNewResponse }
+export { createNewForm, updateForm, getFormsForUserId, getFormById, deleteFormById, deleteQuestionById, createNewResponse, getResponseFromPublicKey, getResponsesFromUserId }
