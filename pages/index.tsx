@@ -1,9 +1,20 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
-
+import { useUser } from "@clerk/nextjs";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
 const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const { user, isLoaded } = useUser();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user) {
+      router.push("/dashboard");
+    }
+  }, [user, isLoaded]);
+
   return (
     <main className={`${inter.className}`}>
       <header>
